@@ -18,6 +18,10 @@ func main() {
 		var shellCmd *exec.Cmd
 
 		if len(args) > 0 {
+			if args[0] == "start" {
+				// Do stuff before lando start.
+			}
+
 			shellCmd = exec.Command("lando", strings.Join(args, " "))
 		} else {
 			shellCmd = exec.Command("lando")

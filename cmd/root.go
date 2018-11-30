@@ -43,11 +43,10 @@ var updateCmd = &cobra.Command{
 			return
 		}
 		if latest.Version.Equals(v) {
-			// latest version is the same as current version. It means current binary is up to date.
+			// Latest version is the same as current version. It means current binary is up to date.
 			log.Println("Current binary is the latest version", version.Version)
 		} else {
 			log.Println("Successfully updated to version", latest.Version)
-			log.Println("Release note:\n", latest.ReleaseNotes)
 		}
 	},
 }

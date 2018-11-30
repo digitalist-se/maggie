@@ -1,10 +1,11 @@
 package main
 
 import (
-	"github.com/nodeone/maggie/cmd"
 	"os"
 	"os/exec"
 	"strings"
+
+	"github.com/nodeone/maggie/cmd"
 )
 
 func main() {

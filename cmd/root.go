@@ -2,17 +2,18 @@ package cmd
 
 import (
 	"fmt"
+	"os"
+
 	"github.com/blang/semver"
 	"github.com/nodeone/maggie/version"
 	"github.com/rhysd/go-github-selfupdate/selfupdate"
 	"github.com/spf13/cobra"
-	"os"
 )
 
 var rootCmd = &cobra.Command{
 	Use:   "maggie",
 	Short: "Maggie is love",
-	Long: `Maggie does many things`,
+	Long:  `Maggie does many things`,
 }
 
 var selfSubCmd = &cobra.Command{
@@ -30,9 +31,9 @@ var versionCmd = &cobra.Command{
 }
 
 var updateCmd = &cobra.Command{
-	Use: "update",
+	Use:   "update",
 	Short: "Update maggie, if needed",
-	Long: `We'll check if a newer version exists, if so, we'll update Maggie'`,
+	Long:  `We'll check if a newer version exists, if so, we'll update Maggie'`,
 	Run: func(mcd *cobra.Command, args []string) {
 
 		v := semver.MustParse(version.Version)

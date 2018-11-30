@@ -1,0 +1,7 @@
+/maggie
+
+# Editor files.
+.idea
+
+# Emacs temporary files.
+.#*

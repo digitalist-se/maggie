@@ -1,7 +1,7 @@
 package main
 
 import (
-	"maggie/cmd"
+	"nodeone/maggie/cmd"
 	"os"
 	"os/exec"
 	"strings"

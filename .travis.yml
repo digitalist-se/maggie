@@ -1,0 +1,28 @@
+language: go
+
+sudo: false
+
+matrix:
+  include:
+  - go: 1.x
+
+before_install:
+- go get github.com/mitchellh/gox
+
+install:
+- # skip
+
+script:
+- go get -t -v ./...
+- if [ "${LATEST}" = "true" ]; then gox -os="linux darwin windows" -arch="amd64" -output="maggie.." -ldflags "-X main.Rev=`git rev-parse --short HEAD`" -verbose ./...; fi
+
+deploy:
+  provider: releases
+  api_key:
+    secure: kzukV0dl/0vOWXX+YTVdcOHzxaWG4Eiguz7IDU55BNCYJ5Zn2q2E/2Jd1SyyT/CM/VBxPVCe6wNkn4uiJvlkjvIdzIxNplkSsrAoLUSbTJ/0qghReXM7Bt7dJLXSZoFsCKe5V9i/1IH7PTeP0Oq+kapAWUoDuXEd4u2WTIhgfHXr8U8ynmteXu8rWE+4X1Q0dVQ5AlTvoy8aezL1uUp7+aqB3rUmIIlTirwk44lAQlvCQlWRjcRCpnz7re8/nOXQYPGQbs0DDzvzTlFzeNgpwueRKd6541cuZga8pAjcqO/8A9DGKpSMEKxGJrGXByK6iPJOLTAd2scIRPq/wUvImi2wTIQz437GmFNF2MoE6+lQIQ3DBSzwdnVmM8hcNcBBBjJ8A9dptr4zTFehR5F705VfnxZBdUqYF5dpSpIiBSpjlo5MeQ/rATd4oZcL2bWm9axwJgPqpJtEesaTtSRasuCWKciy0g5LhCo+aSpG1gVUUjy3HJoUzZB28e2YAoLC2sNQJFRyjoGWIaSCy9yOy1/+hqyftNIi8q0SB3N2bqsbqYS2AZ59PaUqbE7vVm6nuRK0XfxEehG080BCUOnKyCH23zrFwTfAV5GX8FxE/C8gVeahVjsunyT4wQ1MLgOJ5yNKorgVGSrLxGSqxAsFHfNWFrkNJRyasQRxBiTh5tw=
+  file:
+  - maggie.windows.amd64.exe
+  - maggie.darwin.amd64
+  - maggie.linux.amd64
+  on:
+    repo: nodeone/maggie

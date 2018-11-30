@@ -16,7 +16,7 @@ install:
 script:
   - go get -t -v ./...
   - GOOS=windows go get -u github.com/spf13/cobra
-  - if [ "${LATEST}" = "true" ]; then gox -os="linux darwin windows" -arch="amd64" -output="maggie-{{.OS}}-{{.Arch}}" -ldflags "-X version.Version=$TRAVIS_TAG" -verbose ./...; fi
+  - if [ "${LATEST}" = "true" ]; then gox -os="linux darwin windows" -arch="amd64" -output="maggie-{{.OS}}-{{.Arch}}" -ldflags "-X github.com/nodeone/maggie/version.Version=$TRAVIS_TAG" -verbose ./...; fi
 
 deploy:
   provider: releases

@@ -3,9 +3,12 @@ package cmd
 import (
 	"fmt"
 	"github.com/spf13/cobra"
+	"log"
 	"os"
+	"github.com/blang/semver"
+	"github.com/rhysd/go-github-selfupdate/selfupdate"
 )
-
+const version = "0.9.0"
 var rootCmd = &cobra.Command{
 	Use:   "maggie",
 	Short: "Maggie is love",
@@ -26,8 +29,31 @@ var versionCmd = &cobra.Command{
 	},
 }
 
+var updateCmd = &cobra.Command{
+	Use: "update",
+	Short: "Update maggie, if needed",
+	Long: `We'll check if a newer version exists, if so, we'll update Maggie'`,
+	Run: func(mcd *cobra.Command, args []string) {
+
+		v := semver.MustParse(version)
+		latest, err := selfupdate.UpdateSelf(v, "nodeone/maggie")
+		if err != nil {
+			log.Println("Binary update failed:", err)
+			return
+		}
+		if latest.Version.Equals(v) {
+			// latest version is the same as current version. It means current binary is up to date.
+			log.Println("Current binary is the latest version", version)
+		} else {
+			log.Println("Successfully updated to version", latest.Version)
+			log.Println("Release note:\n", latest.ReleaseNotes)
+		}
+	},
+}
+
 func init() {
 	selfSubCmd.AddCommand(versionCmd)
+	selfSubCmd.AddCommand(updateCmd)
 
 	rootCmd.AddCommand(selfSubCmd)
 }

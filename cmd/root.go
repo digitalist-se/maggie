@@ -3,12 +3,13 @@ package cmd
 import (
 	"fmt"
 	"github.com/spf13/cobra"
+	"github.com/rhysd/go-github-selfupdate/selfupdate"
+	"github.com/nodeone/maggie/version"
+	"github.com/blang/semver"
 	"log"
 	"os"
-	"github.com/blang/semver"
-	"github.com/rhysd/go-github-selfupdate/selfupdate"
 )
-const version = "0.0.3"
+
 var rootCmd = &cobra.Command{
 	Use:   "maggie",
 	Short: "Maggie is love",
@@ -25,7 +26,7 @@ var versionCmd = &cobra.Command{
 	Short: "Print the version number of Maggie",
 	Long:  `All software has versions. This is Maggies's`,
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("Maggie v0.0.1 -- HEAD")
+		fmt.Printf("Maggie %s\n", version.Version)
 	},
 }
 
@@ -35,7 +36,7 @@ var updateCmd = &cobra.Command{
 	Long: `We'll check if a newer version exists, if so, we'll update Maggie'`,
 	Run: func(mcd *cobra.Command, args []string) {
 
-		v := semver.MustParse(version)
+		v := semver.MustParse(version.Version)
 		latest, err := selfupdate.UpdateSelf(v, "nodeone/maggie")
 		if err != nil {
 			log.Println("Binary update failed:", err)
@@ -43,7 +44,7 @@ var updateCmd = &cobra.Command{
 		}
 		if latest.Version.Equals(v) {
 			// latest version is the same as current version. It means current binary is up to date.
-			log.Println("Current binary is the latest version", version)
+			log.Println("Current binary is the latest version", version.Version)
 		} else {
 			log.Println("Successfully updated to version", latest.Version)
 			log.Println("Release note:\n", latest.ReleaseNotes)

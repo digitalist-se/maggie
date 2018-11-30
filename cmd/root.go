@@ -8,7 +8,7 @@ import (
 	"github.com/blang/semver"
 	"github.com/rhysd/go-github-selfupdate/selfupdate"
 )
-const version = "0.9.0"
+const version = "0.0.3"
 var rootCmd = &cobra.Command{
 	Use:   "maggie",
 	Short: "Maggie is love",

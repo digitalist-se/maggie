@@ -6,7 +6,6 @@ import (
 	"github.com/nodeone/maggie/version"
 	"github.com/rhysd/go-github-selfupdate/selfupdate"
 	"github.com/spf13/cobra"
-	"log"
 	"os"
 )
 
@@ -39,14 +38,14 @@ var updateCmd = &cobra.Command{
 		v := semver.MustParse(version.Version)
 		latest, err := selfupdate.UpdateSelf(v, "nodeone/maggie")
 		if err != nil {
-			log.Println("Binary update failed:", err)
-			return
+			fmt.Println("Binary update failed:", err)
+			os.Exit(1)
 		}
 		if latest.Version.Equals(v) {
 			// Latest version is the same as current version. It means current binary is up to date.
-			log.Println("Current binary is the latest version", version.Version)
+			fmt.Println("Current binary is the latest version", version.Version)
 		} else {
-			log.Println("Successfully updated to version", latest.Version)
+			fmt.Println("Successfully updated to version", latest.Version)
 		}
 	},
 }

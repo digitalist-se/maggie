@@ -2,10 +2,10 @@ package cmd
 
 import (
 	"fmt"
-	"github.com/spf13/cobra"
-	"github.com/rhysd/go-github-selfupdate/selfupdate"
-	"github.com/nodeone/maggie/version"
 	"github.com/blang/semver"
+	"github.com/nodeone/maggie/version"
+	"github.com/rhysd/go-github-selfupdate/selfupdate"
+	"github.com/spf13/cobra"
 	"log"
 	"os"
 )

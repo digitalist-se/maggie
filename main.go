@@ -27,6 +27,7 @@ func main() {
 			shellCmd = exec.Command("lando")
 		}
 
+		shellCmd.Stdin = os.Stdin
 		shellCmd.Stdout = os.Stdout
 		shellCmd.Stderr = os.Stderr
 

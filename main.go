@@ -3,7 +3,6 @@ package main
 import (
 	"os"
 	"os/exec"
-	"strings"
 
 	"github.com/nodeone/maggie/cmd"
 )
@@ -20,10 +19,10 @@ func main() {
 
 		if len(args) > 0 {
 			if args[0] == "start" {
-				// Do stuff before lando start.
+				// Do stuff before lando start. If needed. Just an example.
 			}
 
-			shellCmd = exec.Command("lando", strings.Join(args, " "))
+			shellCmd = exec.Command("lando", args...)
 		} else {
 			shellCmd = exec.Command("lando")
 		}

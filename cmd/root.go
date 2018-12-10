@@ -58,6 +58,7 @@ func init() {
 	rootCmd.AddCommand(selfSubCmd)
 }
 
+// Execute cli.
 func Execute() {
 	if err := rootCmd.Execute(); err != nil {
 		fmt.Println(err)

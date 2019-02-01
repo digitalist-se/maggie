@@ -2,9 +2,27 @@
 
 [![Build Status](https://travis-ci.org/nodeone/maggie.svg?branch=master)](https://travis-ci.org/nodeone/maggie)
 
+```
+     /\  /\
+  ___/  \|\ /|__
+ |       |_O_|  /
+ |             /_
+ /      \_| \_| /
+/      \/  \/  \/
+\   _  (o   )o  )
+ \ /c   \__/ --.
+ | \_       __-')
+ |_ |      /(_ \
+   ||     (  _) )
+    |_____.\(__/
+    |       |
+    /       \
+```
+
 Maggie is for now only a proxy for Lando.
 
 The only thing that is specific for Maggie right now is the `self` sub command where you find the version of Maggie and a self-update function.
+
 
 ## Install
 
